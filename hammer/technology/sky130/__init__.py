@@ -70,8 +70,10 @@ class SKY130Tech(HammerTechnology):
         elif slib == "sky130_scl":
             libs += [
                 Library(
-                    lef_file=os.path.join(SKY130_SCL, "/lef/sky130_scl_9T.tlef"),
-                    verilog_sim=os.path.join(SKY130_SCL, "/verilog/sky130_scl_9T.v"),
+                    # lef_file=os.path.join(SKY130_SCL, "/lef/sky130_scl_9T.tlef"),
+                    lef_file = SKY130_SCL + "/lef/sky130_scl_9T.tlef",
+                    # verilog_sim=os.path.join(SKY130_SCL, "/verilog/sky130_scl_9T.v"),
+                    verilog_sim = SKY130_SCL + "/verilog/sky130_scl_9T.v",
                     provides=[Provide(lib_type="technology")],
                 ),
             ]
@@ -389,7 +391,8 @@ class SKY130Tech(HammerTechnology):
                     verilog_sim=os.path.join(
                         SKY130_SCL,
                         "verilog",
-                        library + "_9T.v" if slib == "sky130_scl" else ".v",
+                        # library + "_9T.v" if slib == "sky130_scl" else ".v",
+                        library + ".v" if slib == "sky130_scl" else ".v",
                     ),
                     lef_file=os.path.join(library_base_path, "lef", library + ".lef"),
                     spice_file=netlist_path,
